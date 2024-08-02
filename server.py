@@ -16,7 +16,11 @@ def emotion_dect():
     # Get the input text from the query parameter.
     text = request.args.get('textToAnalyze')
     # Call the 'sentiment_analyzer' function to get the sentiment analysis result.
+
     response = emotion_detector(text)
+
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again!"
 
     return f"For the given statement, the system response is " \
            f"'anger': {response['anger']} " \
